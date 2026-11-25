@@ -68,7 +68,7 @@ const G={
  linesTrap(q){const v=q.visual; const d=angDiff(ang(v.a),ang(v.b)); const s=segInt(v.a,v.b); if(s&&s.t>=0&&s.t<=1&&s.u>=0&&s.u<=1)return 'lines meet in drawing'; if(d<8)return 'too close to parallel '+d.toFixed(1); if(Math.abs(d-90)<10)return 'near perpendicular';},
  parallelThrough(q){const v=q.visual; const dist=Math.abs((v.y2-v.y1)*v.px-(v.x2-v.x1)*v.py+v.x2*v.y1-v.y2*v.x1)/Math.hypot(v.x2-v.x1,v.y2-v.y1); if(dist<25)return 'P too close to line '+dist.toFixed(1);},
  colorParts(q){const p=q.params; if(!(p.count*p.d>=p.n&&(p.count-1)*p.d<p.n))return 'shape count '+p.count+' for '+p.n+'/'+p.d; const f=mathToks(q)[0]; if(f.n!==p.n||f.d!==p.d)return 'prompt mismatch';},
- fracWord(q){const ts=mathToks(q); const s=rich(q.prompt); const a=q.answer; const v=a.kind==='fraction'?a.n/a.d:a.w+a.n/a.d; const vals=ts.map(val); let exp;
+ fracWord(q){const ts=mathToks(q); const s=rich(q.prompt); const a=q.answer; const v=a.kind==='fraction'?a.n/a.d:a.kind==='number'?a.accept[0]:a.w+a.n/a.d; const vals=ts.map(val); let exp;
    if(/בבקבוק היו/.test(s)) exp=vals[0]-vals.slice(1).reduce((x,y)=>x+y,0); else if(/נשאר/.test(s)) exp=1-vals.reduce((x,y)=>x+y,0); else if(/בסך הכול|יחד|ביחד/.test(s)) exp=vals.reduce((x,y)=>x+y,0); else return 'unknown kind: '+s;
    if(!eq(v,exp))return 'exp '+exp; if(a.kind==='mixed'&&a.n===0)return 'mixed with zero numerator';},
  fracWordPair(q){const ts=mathToks(q).map(val); const a=q.answer; if(!eq(a.n/a.d,ts[0]+ts[1]))return 'sum'; const l=rich(q.explain.lines[1]); },
@@ -81,11 +81,12 @@ const G={
 let seed=1;
 for(const g of Object.keys(T.hr)){ for(const L of [1,2,3]) for(let i=0;i<N;i++){ const q=T.hr[g](T.k(seed++*2654435761%4294967296),L); cnt[g]=(cnt[g]||0)+1;
   if(!G[g]){(fails[g]??=['NO CHECK']);continue;} let r; try{r=G[g](q)}catch(e){r='EXC '+e} if(r)fail(g,q,'L'+L+' '+r);
+  // generic: a mixed-number answer must have a non-zero fraction part (a whole number is a 'number' answer)
+  if(q.answer.kind==='mixed'&&q.answer.n===0)fail(g,q,'L'+L+' mixed with zero numerator');
   // generic: choice options must be distinct
   if(q.answer.kind==='choice'){const ts=q.answer.options.map(optText); if(new Set(ts).size!==ts.length)fail(g,q,'duplicate options');}
  }}
 for(const [g,f] of Object.entries(fails)){console.log(`== ${g}: ${f.length}/${cnt[g]}`); [...new Set(f.map(x=>x.split(' :: ')[0]))].slice(0,6).forEach(m=>{const ex=f.find(x=>x.startsWith(m));console.log('  ',ex.slice(0,330))});}
-const known=new Set(['fracWord']); // fracWord 'run' (level 3) totals a whole number; stored as w + 0/d, graded correctly
-const bad=Object.entries(fails).filter(([g,f])=>!(known.has(g)&&f.every(x=>x.includes('mixed with zero numerator'))));
+const bad=Object.entries(fails);
 console.log('checked',Object.values(cnt).reduce((a,b)=>a+b),'questions;', bad.length?bad.length+' generator(s) with wrong keys':'all answer keys OK');
 process.exit(bad.length?1:0);
