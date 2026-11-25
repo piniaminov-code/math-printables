@@ -1,0 +1,16 @@
+/* app shell: install / fullscreen control (never printed) */
+.pb-badge-safe{padding-left:max(1rem,env(safe-area-inset-left));padding-right:max(1rem,env(safe-area-inset-right))}
+.app-bar{margin-top:1.25rem;padding:.85rem 1rem;border-radius:1.25rem;background:#fff;border:2px dashed rgba(34,48,74,.14);display:flex;flex-direction:column;gap:.6rem}
+.app-bar-title{margin:0;font-size:.9rem;font-weight:800;color:#22304ac2}
+.app-bar-btns{display:flex;flex-wrap:wrap;gap:.5rem}
+.app-btn{min-height:44px;padding:0 1rem;border-radius:999px;font:inherit;font-size:.95rem;font-weight:800;color:#22304a;background:#fff8ec;border:2px solid rgba(34,48,74,.16);cursor:pointer}
+.app-btn:focus-visible{outline:3px solid #ffb627;outline-offset:2px}
+.app-btn[aria-pressed="true"]{background:#22304a;color:#fff8ec;border-color:#22304a}
+.app-btn-quiet{align-self:flex-start;background:#fff}
+.app-sheet{border-radius:1rem;background:#fff8ec;padding:.75rem .9rem;display:flex;flex-direction:column;gap:.4rem}
+.app-sheet-title{margin:0;font-weight:800}
+.app-steps{margin:0;padding-inline-start:1.4rem;list-style:decimal;display:flex;flex-direction:column;gap:.3rem;line-height:1.6}
+.app-share-ico{display:inline-block;vertical-align:-4px;color:#1f6fd1}
+.app-note{margin:0;font-size:.85rem;color:#22304ac2;line-height:1.55}
+@media (prefers-reduced-motion:reduce){.app-btn{transition:none}}
+@media print{.app-bar{display:none!important}}

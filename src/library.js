@@ -960,6 +960,7 @@ var __lib = (() => {
           hs('div', { className: 'lib-levels', role: 'group', 'aria-label': `${x.title}: בחירת רמה` }, LEVELS.map(([l, n_]) => U.jsx(ae, { to: sheetUrl(x.id, { l }), className: 'lib-lv', 'aria-label': `${x.title}, רמה ${n_}`, children: n_ }, l))),
         ] }, x.id)),
       ] }, d)),
+      h(__app.InstallBar, {}),
     ]));
   }
 
