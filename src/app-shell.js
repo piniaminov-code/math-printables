@@ -99,5 +99,20 @@ var __app = (() => {
     ]);
   }
 
-  return { InstallBar, isInstalled, canFullscreen, isIOS, isIPhone };
+  // Keyboard control for the "בונות מלבן" board (it was pointer-only). The arrow keys grow and
+  // shrink a rectangle anchored at the top-left square; the page's live line announces the size.
+  // start/end/setStart/setEnd/setStatus are the game's own state, so checking works unchanged.
+  const rectKey = (start, end, setStart, setEnd, setStatus) => (e) => {
+    const dc = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    const dr = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
+    if (!dc && !dr) return;
+    e.preventDefault();
+    setStatus(null);
+    if (!start || !end) { setStart({ r: 0, c: 0 }); setEnd({ r: 0, c: 0 }); return; }
+    const cl = (v, hi) => Math.max(0, Math.min(hi, v));
+    if (start.r !== 0 || start.c !== 0) setStart({ r: Math.min(start.r, end.r), c: Math.min(start.c, end.c) });
+    setEnd({ r: cl(Math.max(start.r, end.r) + dr, Rr - 1), c: cl(Math.max(start.c, end.c) + dc, Lr - 1) });
+  };
+
+  return { InstallBar, isInstalled, canFullscreen, isIOS, isIPhone, rectKey };
 })();

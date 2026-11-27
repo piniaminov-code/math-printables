@@ -88,3 +88,6 @@
 .lib-dg{display:inline-flex;align-items:center;gap:.04em;letter-spacing:0}
 .lib-dgbox{width:.85em;height:1.1em;border-width:2px}
 .lib-full>.exam-q-no{margin-inline-end:.4em}
+/* large text: answer lines shrink with the screen; vertical sums scroll inside their own box */
+.lib-ans .exam-write-line{width:min(7rem,38vw)}
+.lib-vert{max-width:100%;overflow-x:auto;justify-content:safe center}

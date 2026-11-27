@@ -14,3 +14,12 @@
 .app-note{margin:0;font-size:.85rem;color:#22304ac2;line-height:1.55}
 @media (prefers-reduced-motion:reduce){.app-btn{transition:none}}
 @media print{.app-bar{display:none!important}}
+/* site-wide: a math expression may wrap between tokens when the screen is too narrow
+   (large text settings); fractions and mixed numbers are single tokens and never split */
+.math{flex-wrap:wrap;max-width:100%;row-gap:.3em}
+[aria-label^="לוח משבצות"]:focus-visible{outline:3px solid #ffb627;outline-offset:3px}
+/* large text: let flex text columns shrink and wrap instead of pushing the page sideways
+   (body hides horizontal overflow, so anything wider would be cut off) */
+.flex:not(.flex-col):has(>.flex-1){flex-wrap:wrap}
+.flex:not(.flex-col)>.flex-1{min-width:min(8rem,100%)}
+h1,.lib-card h3{overflow-wrap:anywhere}

@@ -1,0 +1,19 @@
+# pixel diff at 375x667, normal text size: committed build (06e1014) vs this change
+_                                        identical
+_games                                   identical
+_library                                 identical
+_library_angles_l_2_n_n_s_5              identical
+_library_dec_addsub_l_3_n_n_s_5          identical
+_library_divisibility_l_3_n_n_s_5        identical
+_library_exam_l_2_s_5                    identical
+_library_frac_equiv_l_2_n_n_s_5          identical
+_library_topic_compare_l_3_s_5           identical
+_practice                                identical
+_practice_addSub_seed_7                  identical
+_practice_compare_seed_7                 identical
+_practice_convert_seed_3                 identical
+_practice_lines_seed_3                   identical
+_practice_ofQuantity_seed_3              identical
+_practice_rectangle_seed_3               identical
+_printables                              DIFFERS old(375, 6376) new(375, 5682) bbox=(14, 1141, 361, 5682)
+printables: identical above y=1141 (controls); below that the exam is random on every load (seen before between two loads of the same build)

@@ -50,6 +50,19 @@ if (!html.includes(homeNew)) {
   html = html.replace(homeOld, homeNew).replace(homeEnd, homeEndNew);
 }
 
+// Games: keyboard access. The rectangle board took pointer input only; the pizza box scrolled the page on Space.
+const patches = [
+  ['onPointerCancel:b,role:`grid`,"aria-label":`לוח משבצות`,',
+   'onPointerCancel:b,tabIndex:0,onKeyDown:__app.rectKey(n,i,r,a,s),role:`application`,"aria-label":`לוח משבצות. אפשר גם במקלדת: החצים משנים את רוחב המלבן ואת גובהו`,'],
+  ['onKeyDown:e=>(e.key===`Enter`||e.key===` `)&&h(),',
+   'onKeyDown:e=>{(e.key===`Enter`||e.key===` `)&&(e.preventDefault(),h())},'],
+];
+for (const [from, to] of patches) {
+  if (html.includes(to)) continue;
+  if (html.split(from).length !== 2) throw new Error('patch target not found exactly once: ' + from.slice(0, 50));
+  html = html.replace(from, to);
+}
+
 // <head>: manifest, icons and iOS home-screen tags (relative URLs: the site lives under a GitHub Pages subpath).
 const headTags = [
   '<link rel="manifest" href="manifest.webmanifest" />',
