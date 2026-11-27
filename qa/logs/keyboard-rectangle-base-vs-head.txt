@@ -1,0 +1,27 @@
+# Rectangle game ("בונות מלבן") — real key events, headless Chromium, viewport 375x667
+# Steps: open #/games/rectangle, focus the board, press ArrowRight x3 then ArrowDown x2.
+# "focused" = document.activeElement (tag + role) after each step; "live" = the aria-live line under the board;
+# "rectangle" = size of the highlighted cell block read from the board (columns x rows), or none.
+# generated 2026-11-27T05:41:33.397Z
+
+## BASE 06e1014
+board: role=grid tabindex=(none)
+after focus()      | focused: body role=(none) | live: עוד לא ציירת מלבן | rectangle: none
+ArrowRight         | focused: body role=(none) | live: עוד לא ציירת מלבן | rectangle: none
+ArrowRight         | focused: body role=(none) | live: עוד לא ציירת מלבן | rectangle: none
+ArrowRight         | focused: body role=(none) | live: עוד לא ציירת מלבן | rectangle: none
+ArrowDown          | focused: body role=(none) | live: עוד לא ציירת מלבן | rectangle: none
+ArrowDown          | focused: body role=(none) | live: עוד לא ציירת מלבן | rectangle: none
+page errors: none
+
+## HEAD 4edc7d6
+board: role=application tabindex=0
+after focus()      | focused: div role=application [the board] | live: עוד לא ציירת מלבן | rectangle: none
+ArrowRight         | focused: div role=application [the board] | live: המלבן שלך: 1 על 1 | rectangle: 1 x 1 (1 cells)
+ArrowRight         | focused: div role=application [the board] | live: המלבן שלך: 2 על 1 | rectangle: 2 x 1 (2 cells)
+ArrowRight         | focused: div role=application [the board] | live: המלבן שלך: 3 על 1 | rectangle: 3 x 1 (3 cells)
+ArrowDown          | focused: div role=application [the board] | live: המלבן שלך: 3 על 2 | rectangle: 3 x 2 (6 cells)
+ArrowDown          | focused: div role=application [the board] | live: המלבן שלך: 3 על 3 | rectangle: 3 x 3 (9 cells)
+page errors: none
+
+# Note: on HEAD the first arrow key places a 1x1 square in the top-left corner; each further key grows or shrinks it by one.
