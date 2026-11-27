@@ -1,0 +1,4 @@
+# node tools/check-answers.mjs 300
+library: 18630 items/sheets checked across 39 generators and 15 recipes
+checked 41400 questions; all answer keys OK
+exit=0

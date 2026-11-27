@@ -1,0 +1,3 @@
+# node tests/ui-check.mjs --width 667 --height 375   (landscape, final build)
+ui-check 667x375: 344 screens audited, 0 problem(s)
+exit=0

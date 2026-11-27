@@ -1,0 +1,4 @@
+# node tools/build.mjs (twice, idempotency)
+index.html updated (1003 KB)
+index.html updated (1003 KB)
+index.html unchanged by rebuild: OK

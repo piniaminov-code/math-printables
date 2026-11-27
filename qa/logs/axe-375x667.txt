@@ -1,0 +1,21 @@
+# axe-core 4.10 (from the scratch QA env, not a repo dependency) at 375x667: gate, 10 routes, 4 practice topics + feedback
+scanned gate violations 0 controls 3
+scanned / violations 0 controls 6
+scanned /practice violations 0 controls 9
+scanned /games violations 0 controls 6
+scanned /games/pizza violations 0 controls 4
+scanned /games/compare violations 0 controls 5
+scanned /games/rectangle violations 0 controls 2
+scanned /printables violations 0 controls 20
+scanned /library violations 0 controls 82
+scanned /library/order-ops?l=2&s=3 violations 0 controls 14
+scanned /library/divisibility?l=3&s=3 violations 0 controls 14
+scanned practice convert violations 0 controls 16
+scanned practice convert feedback violations 0 controls 5
+scanned practice compare violations 0 controls 5
+scanned practice compare feedback violations 0 controls 6
+scanned practice addSub violations 0 controls 16
+scanned practice addSub feedback violations 0 controls 5
+scanned practice lines violations 0 controls 5
+scanned practice lines feedback violations 0 controls 6
+DONE

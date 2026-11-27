@@ -1,0 +1,3 @@
+# node tests/ui-check.mjs   (375x667, final build)
+ui-check 375x667: 344 screens audited, 0 problem(s)
+exit=0
